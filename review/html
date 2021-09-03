@@ -1,1 +1,59 @@
+Python 3.9.6 (tags/v3.9.6:db3ff76, Jun 28 2021, 15:26:21) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> """render a miniforge releases page"""
+'render a miniforge releases page'
+>>> import jinja2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'jinja2'
+>>> from pathlib import Path
+>>> import datetime
+>>> import sys
+>>> import requests_cache
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'requests_cache'
+>>>
+>>> HERE = Path(__file__).parent
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name '__file__' is not defined
+>>> BUILD = HERE.parent / "build"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'HERE' is not defined
+>>> DOCS = BUILD / "docs"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'BUILD' is not defined
+>>>
+>>> if not DOCS.exists():
+...     DOCS.mkdir(parents=True)
+...
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'DOCS' is not defined
+>>> # TODO: handle pagination
+>>> BASE_URL = "https://api.github.com/repos/conda-forge/miniforge/releases?per_page=100"
+>>> ENV = jinja2.Environment(loader=jinja2.FileSystemLoader([HERE / "templates"]))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'jinja2' is not defined
+>>>
+>>>
+>>> def get_releases():
+...     """use the GitHub API to fetch release information"""
+...     s = requests_cache.CachedSession(str(BUILD / "cache"))
+...     releases = s.get(BASE_URL).json()
+...
+>>>     new_releases = []
+  File "<stdin>", line 1
+    new_releases = []
+IndentationError: unexpected indent
+>>>
+>>>     for release in releases:
+  File "<stdin>", line 1
+    for release in releases:
+IndentationError: unexpected indent
+>>>         if release["draft"] or release["prerelease"]:
 
